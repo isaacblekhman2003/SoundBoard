@@ -24,16 +24,17 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     private Button D;
     private Button DD;
     private Button E;
+    private Button song;
     boolean loaded = false;
     private boolean isloaded;
-    private int ANote;
-    private int BbNote;
-    private int BNote;
-    private int CNote;
-    private int CCNote;
-    private int DNote;
-    private int DDNote;
-    private int ENote;
+    private Note ANote;
+    private Note BbNote;
+    private Note BNote;
+    private Note CNote;
+    private Note CCNote;
+    private Note DNote;
+    private Note DDNote;
+    private Note ENote;
 
 
     @Override
@@ -42,10 +43,13 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_main);
         widgets();
         listeners();
+
         initializeSoundPool();
 
 
     }
+
+
 
     private void initializeSoundPool(){
 
@@ -59,14 +63,14 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-        ANote = soundPool.load(this, R.raw.scalea, 1);
-        BbNote = soundPool.load(this, R.raw.scalebb, 1);
-        BNote = soundPool.load(this, R.raw.scaleb, 1);
-        CNote = soundPool.load(this, R.raw.scalec, 1);
-        CCNote = soundPool.load(this, R.raw.scalecs, 1);
-        DNote = soundPool.load(this, R.raw.scaled, 1);
-       DDNote = soundPool.load(this, R.raw.scaleds, 1);
-        ENote = soundPool.load(this, R.raw.scalee, 1);
+        ANote = new Note(soundPool.load(this, R.raw.scalea, 1),100);
+        BbNote = new Note (soundPool.load(this, R.raw.scalebb, 1),100);
+        BNote = new Note (soundPool.load(this, R.raw.scaleb, 1),100);
+        CNote = new Note (soundPool.load(this, R.raw.scalec, 1),100);
+        CCNote = new Note (soundPool.load(this, R.raw.scalecs, 1),100);
+        DNote = new Note (soundPool.load(this, R.raw.scaled, 1),100);
+       DDNote = new Note (soundPool.load(this, R.raw.scaleds, 1),100);
+        ENote = new Note (soundPool.load(this, R.raw.scalee, 1),100);
 
 
 
@@ -84,6 +88,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
         D = findViewById(R.id.button_main_D);
         DD = findViewById(R.id.button_main_DD);
         E = findViewById(R.id.button_main_E);
+        song = findViewById(R.id.button_main_song);
     }
     private void delay(int millisDelay){
         try{
@@ -104,7 +109,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                                     public void onClick(View view) {
 
                                         if (loaded) {
-                                            soundPool.play(ANote, 1, 1, 1, 0, 1f);
+                                            soundPool.play(ANote.getsI(), 1, 1, 1, 0, 1f);
                                             Log.e("Test", "Played sound");
                                         }
                                     }
@@ -116,7 +121,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(BNote, 1, 1, 1, 0, 1f);
+                    soundPool.play(BNote.getsI(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
@@ -128,7 +133,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(CNote, 1, 1, 1, 0, 1f);
+                    soundPool.play(CNote.getsI(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
@@ -140,7 +145,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(DNote, 1, 1, 1, 0, 1f);
+                    soundPool.play(DNote.getsI(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
@@ -152,7 +157,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(ENote, 1, 1, 1, 0, 1f);
+                    soundPool.play(ENote.getsI(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
@@ -164,7 +169,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(BbNote, 1, 1, 1, 0, 1f);
+                    soundPool.play(BbNote.getsI(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
@@ -176,7 +181,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(CCNote, 1, 1, 1, 0, 1f);
+                    soundPool.play(CCNote.getsI(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
@@ -187,7 +192,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View view) {
                 if (loaded) {
-                    soundPool.play(DDNote, 1, 1, 1, 0, 1f);
+                    soundPool.play(DDNote.getsI(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
@@ -200,8 +205,8 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch(view.getId()){
-            case R.id.button_main_A:
-            {  SoundPool.play(ANote, 1,1,1,0,1)}
+            case R.id.button_main_song:
+            {  soundPool.play(ANote.getsI(), 1,1,1,0,1);}
         }
     }
 }
