@@ -1,29 +1,28 @@
 package com.example.soundboard;
-import android.app.Activity;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
 import android.widget.Button;
+
+import java.util.Arrays;
 
 public class SoundboardActivity extends AppCompatActivity implements View.OnClickListener {
     private SoundPool soundPool;
-    int[] arrayy ={1,2,3,4,5,6,7,7};
-    private Button A;
-    private Button Bb;
-    private Button B;
-    private Button C;
-    private Button CC;
-    private Button D;
-    private Button DD;
-    private Button E;
+
+    private Button aButton;
+    private Button bBButton;
+    private Button bButton;
+    private Button cButton;
+    private Button cCButton;
+    private Button dButton;
+    private Button dDButton;
+    private Button eButton;
     private Button song;
     boolean loaded = false;
     private boolean isloaded;
@@ -35,16 +34,17 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     private Note DNote;
     private Note DDNote;
     private Note ENote;
-
+    private Note[] noteScale;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         widgets();
+        initializeSoundPool();
         listeners();
 
-        initializeSoundPool();
+
 
 
     }
@@ -72,7 +72,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
        DDNote = new Note (soundPool.load(this, R.raw.scaleds, 1),100);
         ENote = new Note (soundPool.load(this, R.raw.scalee, 1),100);
 
-
+        noteScale = new Note[] {ANote,BbNote,BNote,CNote,CCNote,DNote,DDNote,ENote};
 
 
 
@@ -80,14 +80,14 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void widgets() {
-        A = findViewById(R.id.button_main_A);
-        Bb = findViewById(R.id.button_main_Bb);
-        B = findViewById(R.id.button_main_B);
-        C = findViewById(R.id.button_main_C);
-        CC = findViewById(R.id.button_main_CC);
-        D = findViewById(R.id.button_main_D);
-        DD = findViewById(R.id.button_main_DD);
-        E = findViewById(R.id.button_main_E);
+        aButton = findViewById(R.id.button_main_A);
+        bBButton = findViewById(R.id.button_main_Bb);
+        bButton = findViewById(R.id.button_main_B);
+        cButton = findViewById(R.id.button_main_C);
+        cCButton = findViewById(R.id.button_main_CC);
+        dButton = findViewById(R.id.button_main_D);
+        dDButton = findViewById(R.id.button_main_DD);
+        eButton = findViewById(R.id.button_main_E);
         song = findViewById(R.id.button_main_song);
     }
     private void delay(int millisDelay){
@@ -96,117 +96,127 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
 
         }catch (InterruptedException e){
             e.printStackTrace();
-
-
-
-
-
-        }}
+        }
+    }
 
     private void listeners() {
-        A.setOnClickListener(new View.OnClickListener() {
+        aButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
 
                                         if (loaded) {
-                                            soundPool.play(ANote.getsI(), 1, 1, 1, 0, 1f);
+                                            soundPool.play(ANote.getSoundId(), 1, 1, 1, 0, 1f);
                                             Log.e("Test", "Played sound");
                                         }
                                     }
 
 
                                     });
-        B.setOnClickListener(new View.OnClickListener() {
+        bButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(BNote.getsI(), 1, 1, 1, 0, 1f);
+                    soundPool.play(BNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
 
 
         });
-        C.setOnClickListener(new View.OnClickListener() {
+        cButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(CNote.getsI(), 1, 1, 1, 0, 1f);
+                    soundPool.play(CNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
 
 
         });
-        D.setOnClickListener(new View.OnClickListener() {
+        dButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(DNote.getsI(), 1, 1, 1, 0, 1f);
+                    soundPool.play(DNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
 
 
         });
-        E.setOnClickListener(new View.OnClickListener() {
+        eButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(ENote.getsI(), 1, 1, 1, 0, 1f);
+                    soundPool.play(ENote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
 
 
         });
-        Bb.setOnClickListener(new View.OnClickListener() {
+        bBButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(BbNote.getsI(), 1, 1, 1, 0, 1f);
+                    soundPool.play(BbNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
 
 
         });
-        CC.setOnClickListener(new View.OnClickListener() {
+        cCButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (loaded) {
-                    soundPool.play(CCNote.getsI(), 1, 1, 1, 0, 1f);
+                    soundPool.play(CCNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
             }
 
 
         });
-        DD.setOnClickListener(new View.OnClickListener() {
+        dDButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (loaded) {
-                    soundPool.play(DDNote.getsI(), 1, 1, 1, 0, 1f);
+                    soundPool.play(DDNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
                 }
-            }
+            }});
+            song.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (loaded) {
+                        Log.d("LOOK AT ME", "onClick: " + Arrays.toString(noteScale));
+                        for(int i = 0; i < noteScale.length; i++ ) {soundPool.play(noteScale[i].getSoundId(), 1,1,1,0,1);
+                            delay(noteScale[i].getDelay() );
+                        }
+                        Log.e("Test", "Played sound");
+                    }
+                }
 
 
         });
                                 }
 
 
+
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button_main_song:
-            {  soundPool.play(ANote.getsI(), 1,1,1,0,1);}
+            { for(int i = 0; i < noteScale.length; i++ ) {soundPool.play(noteScale[i].getSoundId(), 1,1,1,0,1);
+                delay(noteScale[i].getDelay() );
+            }}
         }
     }
 }
