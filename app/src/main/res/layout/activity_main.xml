@@ -120,7 +120,22 @@
         android:id="@+id/button_main_song"
         android:layout_width="160dp"
         android:layout_height="733dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Song"
-        tools:layout_editor_absoluteX="259dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button_main_play"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button_main_play"
+        android:layout_width="154dp"
+        android:layout_height="735dp"
+        android:layout_marginStart="8dp"
+        android:text="PlayBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

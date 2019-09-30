@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.widget.Button;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SoundboardActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,6 +25,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     private Button dDButton;
     private Button eButton;
     private Button song;
+    private Button buildYourOwn;
     boolean loaded = false;
     private boolean isloaded;
     private Note ANote;
@@ -35,6 +37,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     private Note DDNote;
     private Note ENote;
     private Note[] noteScale;
+    private Song buildyourown;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
         ENote = new Note (soundPool.load(this, R.raw.scalee, 1),100);
 
         noteScale = new Note[] {ANote,BbNote,BNote,CNote,CCNote,DNote,DDNote,ENote};
+        buildyourown = new Song();
 
 
 
@@ -89,6 +93,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
         dDButton = findViewById(R.id.button_main_DD);
         eButton = findViewById(R.id.button_main_E);
         song = findViewById(R.id.button_main_song);
+        buildYourOwn = findViewById(R.id.button_main_play);
     }
     private void delay(int millisDelay){
         try{
@@ -107,6 +112,8 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                                         if (loaded) {
                                             soundPool.play(ANote.getSoundId(), 1, 1, 1, 0, 1f);
                                             Log.e("Test", "Played sound");
+                                            buildyourown.addNote(ANote);
+
                                         }
                                     }
 
@@ -119,6 +126,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                 if (loaded) {
                     soundPool.play(BNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
+                    buildyourown.addNote(BNote);
                 }
             }
 
@@ -131,6 +139,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                 if (loaded) {
                     soundPool.play(CNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
+                    buildyourown.addNote(CNote);
                 }
             }
 
@@ -143,6 +152,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                 if (loaded) {
                     soundPool.play(DNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
+                    buildyourown.addNote(DDNote);
                 }
             }
 
@@ -155,6 +165,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                 if (loaded) {
                     soundPool.play(ENote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
+                    buildyourown.addNote(ENote);
                 }
             }
 
@@ -167,6 +178,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                 if (loaded) {
                     soundPool.play(BbNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
+                    buildyourown.addNote(BbNote);
                 }
             }
 
@@ -179,6 +191,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                 if (loaded) {
                     soundPool.play(CCNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
+                    buildyourown.addNote(CCNote);
                 }
             }
 
@@ -190,6 +203,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
                 if (loaded) {
                     soundPool.play(DDNote.getSoundId(), 1, 1, 1, 0, 1f);
                     Log.e("Test", "Played sound");
+                    buildyourown.addNote(DDNote);
                 }
             }});
             song.setOnClickListener(new View.OnClickListener() {
@@ -206,6 +220,21 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
 
 
         });
+        buildYourOwn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (loaded) {
+                    Log.d("LOOK AT ME", "onClick: " + Arrays.toString(noteScale));
+                    for(int i = 0; i < buildyourown.getSongLength(); i++ ) {soundPool.play(buildyourown.getNote(i).getSoundId(), 1,1,1,0,1);
+                        delay(buildyourown.getNote(i).getDelay() );
+                    }
+
+                    Log.e("Test", "Played sound");
+                }
+            }
+
+
+        });
                                 }
 
 
@@ -214,8 +243,8 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button_main_song:
-            { for(int i = 0; i < noteScale.length; i++ ) {soundPool.play(noteScale[i].getSoundId(), 1,1,1,0,1);
-                delay(noteScale[i].getDelay() );
+                { for(int i = 0; i < buildyourown.getSongLength(); i++ ) {soundPool.play(buildyourown.getNote(i).getSoundId(), 1,1,1,0,1);
+                delay(buildyourown.getNote(i).getDelay() );
             }}
         }
     }

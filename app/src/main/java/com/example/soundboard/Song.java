@@ -22,13 +22,24 @@ public class Song {
         song.add(note);
     }
 
-    public void removeNote(int location)
-    {
+    public void addNote(Note note, int location) {
+        song.set(location, note);
+    }
+
+    public void removeNote(int location) {
         song.remove(location);
     }
+
+    public int getSongLength() {
+        return song.size();
+    }
+    public Note getNote(int location){
+
+return song.get(location);
+
+    }
+
 }
-
-
 
 
 
