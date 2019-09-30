@@ -38,6 +38,10 @@ public class Song {
 return song.get(location);
 
     }
+    public void newSong(){
+
+        song.clear();
+    }
 
 }
 
