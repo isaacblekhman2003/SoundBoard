@@ -26,7 +26,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     private Button eButton;
     private Button clear;
     private Button song;
-    private Button buildYourOwn;
+    private Button buttonBuildYourOwn;
     boolean loaded = false;
     private boolean isloaded;
     private Note aNote;  // camelCase for all variables & methods
@@ -38,7 +38,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     private Note ddNote;
     private Note eNote;
     private Note[] noteScale;
-    private Song buildyourown;
+    private Song buildYourOwn;
     private Map<Integer, Note> noteMap;
 
     @Override
@@ -81,7 +81,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
         noteMap.put(dDButton.getId(), ddNote);
         noteMap.put(eButton.getId(), eNote);
         noteScale = new Note[]{aNote, bbNote, bNote, cNote, ccNote, dNote, ddNote, eNote};
-        buildyourown = new Song();
+        buildYourOwn = new Song();
     }
 
     private void widgets() {
@@ -94,7 +94,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
         dDButton = findViewById(R.id.button_main_DD);
         eButton = findViewById(R.id.button_main_E);
         song = findViewById(R.id.button_main_song);
-        buildYourOwn = findViewById(R.id.button_main_play);
+        buttonBuildYourOwn = findViewById(R.id.button_main_play);
         clear = findViewById(R.id.button_main_clear);
     }
 
@@ -119,7 +119,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
         dDButton.setOnClickListener(keyboardListener);
         song.setOnClickListener(this);
         clear.setOnClickListener(this);
-        buildYourOwn.setOnClickListener(this);
+        buttonBuildYourOwn.setOnClickListener(this);
     }
 
 
@@ -135,13 +135,13 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             }
             case R.id.button_main_clear : {
 
-                    buildyourown.newSong();
+                    buildYourOwn.newSong();
                 break;
             }
             case R.id.button_main_play : {
-                for (int i = 0; i < buildyourown.getSongLength(); i++) {
-                    soundPool.play(buildyourown.getNote(i).getSoundId(), 1, 1, 1, 0, 1);
-                    delay(buildyourown.getNote(i).getDelay());
+                for (int i = 0; i < buildYourOwn.getSongLength(); i++) {
+                    soundPool.play(buildYourOwn.getNote(i).getSoundId(), 1, 1, 1, 0, 1);
+                    delay(buildYourOwn.getNote(i).getDelay());
                 }
                 break;
 
@@ -164,7 +164,7 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
         public void onClick(View view) {
             Note note = noteMap.get(view.getId());
             soundPool.play(note.getSoundId(), 1, 1, 1, 0, 1f);
-            buildyourown.addNote(note);
+            buildYourOwn.addNote(note);
         }
     }
 
