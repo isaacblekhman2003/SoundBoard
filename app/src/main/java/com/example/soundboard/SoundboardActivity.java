@@ -4,15 +4,12 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,14 +29,14 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
     private Button buildYourOwn;
     boolean loaded = false;
     private boolean isloaded;
-    private Note ANote;  // camelCase for all variables & methods
-    private Note BbNote;
-    private Note BNote;
-    private Note CNote;
-    private Note CCNote;
-    private Note DNote;
-    private Note DDNote;
-    private Note ENote;
+    private Note aNote;  // camelCase for all variables & methods
+    private Note bbNote;
+    private Note bNote;
+    private Note cNote;
+    private Note ccNote;
+    private Note dNote;
+    private Note ddNote;
+    private Note eNote;
     private Note[] noteScale;
     private Song buildyourown;
     private Map<Integer, Note> noteMap;
@@ -66,24 +63,24 @@ public class SoundboardActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-        ANote = new Note(soundPool.load(this, R.raw.scalea, 1), 100);
-        BbNote = new Note(soundPool.load(this, R.raw.scalebb, 1), 100);
-        BNote = new Note(soundPool.load(this, R.raw.scaleb, 1), 100);
-        CNote = new Note(soundPool.load(this, R.raw.scalec, 1), 100);
-        CCNote = new Note(soundPool.load(this, R.raw.scalecs, 1), 100);
-        DNote = new Note(soundPool.load(this, R.raw.scaled, 1), 100);
-        DDNote = new Note(soundPool.load(this, R.raw.scaleds, 1), 100);
-        ENote = new Note(soundPool.load(this, R.raw.scalee, 1), 100);
+        aNote = new Note(soundPool.load(this, R.raw.scalea, 1), 100);
+        bbNote = new Note(soundPool.load(this, R.raw.scalebb, 1), 100);
+        bNote = new Note(soundPool.load(this, R.raw.scaleb, 1), 100);
+        cNote = new Note(soundPool.load(this, R.raw.scalec, 1), 100);
+        ccNote = new Note(soundPool.load(this, R.raw.scalecs, 1), 100);
+        dNote = new Note(soundPool.load(this, R.raw.scaled, 1), 100);
+        ddNote = new Note(soundPool.load(this, R.raw.scaleds, 1), 100);
+        eNote = new Note(soundPool.load(this, R.raw.scalee, 1), 100);
 
-        noteMap.put(aButton.getId(), ANote);
-        noteMap.put(bBButton.getId(), BbNote);
-        noteMap.put(bButton.getId(), BNote);
-        noteMap.put(cButton.getId(), CNote);
-        noteMap.put(cCButton.getId(), CCNote);
-        noteMap.put(dButton.getId(), DNote);
-        noteMap.put(dDButton.getId(), DDNote);
-        noteMap.put(eButton.getId(), ENote);
-        noteScale = new Note[]{ANote, BbNote, BNote, CNote, CCNote, DNote, DDNote, ENote};
+        noteMap.put(aButton.getId(), aNote);
+        noteMap.put(bBButton.getId(), bbNote);
+        noteMap.put(bButton.getId(), bNote);
+        noteMap.put(cButton.getId(), cNote);
+        noteMap.put(cCButton.getId(), ccNote);
+        noteMap.put(dButton.getId(), dNote);
+        noteMap.put(dDButton.getId(), ddNote);
+        noteMap.put(eButton.getId(), eNote);
+        noteScale = new Note[]{aNote, bbNote, bNote, cNote, ccNote, dNote, ddNote, eNote};
         buildyourown = new Song();
     }
 
